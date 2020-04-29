@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/buttonMagnifier"
+        android:layout_width="192dp"
+        android:layout_height="195dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="11dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/my_button_bg"
+        android:textSize="33sp"
+        android:text="Magnifier" />
+
+    <Button
+        android:id="@+id/buttonCompass"
+        android:layout_width="192dp"
+        android:layout_height="195dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="204dp"
+        android:layout_marginBottom="202dp"
+        android:background="@drawable/my_button_bg"
+        android:textSize="36sp"
+        android:text="Compass" />
+
+    <Button
+        android:id="@+id/buttonWeather"
+        android:layout_width="192dp"
+        android:layout_height="195dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="204dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/my_button_bg"
+        android:textSize="36sp"
+        android:text="Weather" />
+
+    <Button
+        android:id="@+id/buttonDirections"
+        android:layout_width="192dp"
+        android:layout_height="195dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="204dp"
+        android:layout_marginBottom="396dp"
+        android:background="@drawable/my_button_bg"
+        android:textSize="30sp"
+        android:text="Directions" />
+
+    <Button
+        android:id="@+id/buttonContacts"
+        android:layout_width="192dp"
+        android:layout_height="195dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="11dp"
+        android:layout_marginBottom="202dp"
+        android:background="@drawable/my_button_bg"
+        android:textSize="36sp"
+        android:text="Contacts" />
+
+    <Button
+        android:id="@+id/buttonTime"
+        android:layout_width="192dp"
+        android:layout_height="195dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="11dp"
+        android:layout_marginBottom="396dp"
+        android:background="@drawable/my_button_bg"
+        android:textSize="36sp"
+        android:text="Time" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="414dp"
+        android:layout_height="113dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="-102dp"
+        android:layout_marginBottom="592dp"
+        android:text="EyeTravel"
+
+        android:textColor="#000000"
+        android:textSize="50sp" />
+
+    <!--
+        <com.here.sdk.mapviewlite.MapViewLite
+            android:id="@+id/map_view"
+            android:layout_width="395dp"
+            android:layout_height="match_parent"/>
+    -->
+</RelativeLayout>
