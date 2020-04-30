@@ -4,7 +4,7 @@ EyeTravel is a navigation app using HERE Technology's SDKs, specifically designe
 
 ## Installation
 
-Clone the repository on your computer and then drag the files into a project. 
+Clone the repository on your computer and then drag the files into a project in Android Studio. 
 
 ## Features
 
