@@ -8,12 +8,10 @@ import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
-import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -41,7 +39,6 @@ public class Directions extends Activity {
     private RoutingEngine routingEngine;
     private List<String> maneuverActions;
     private int navigationIndex = 0;
-    private double sourceLat, sourceLong;
     private static Context context;
     private static boolean isGpsEnabled, isNetworkLocationEnabled;
 
@@ -58,7 +55,7 @@ public class Directions extends Activity {
         LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             TextView editText = findViewById(R.id.textViewDirections);
-            String newText = "error";
+            String newText = "Turn location permissions on for this app";
             editText.setText(newText);
             return;
         }
@@ -75,6 +72,7 @@ public class Directions extends Activity {
         double longitude = location.getLongitude();
         double latitude = location.getLatitude();
 
+        // These two lines decide the begin and ending coordinates in latitude, longitude by grabbing current location
         Waypoint startWaypoint = new Waypoint(new GeoCoordinates(getLocationWithCheckNetworkAndGPS().getLatitude(), getLocationWithCheckNetworkAndGPS().getLongitude()));
         Waypoint destinationWaypoint = new Waypoint(new GeoCoordinates(endCoordinates.latitude,endCoordinates.longitude));
 
@@ -82,7 +80,7 @@ public class Directions extends Activity {
 
         List<Waypoint> waypoints =
                 new ArrayList<>(Arrays.asList(startWaypoint, destinationWaypoint));
-
+        //Code to calculate the route
         routingEngine.calculateRoute(
                 waypoints,
                 new PedestrianOptions(),
@@ -91,8 +89,6 @@ public class Directions extends Activity {
                     public void onRouteCalculated(@Nullable RoutingError routingError, @Nullable List<Route> routes) {
                         if (routingError == null) {
                             Route route = routes.get(0);
-                            //showRouteDetails(route);
-                            //showRouteOnMap(route);
                             /*Maneuver Instructions*/
                             List<Section> sections = route.getSections();
                             for (Section section : sections) {
@@ -101,26 +97,37 @@ public class Directions extends Activity {
                                 getRouting(section);
                             }
                             TextView editText = findViewById(R.id.textViewDirections);
-                            String newText = maneuverActions.get(navigationIndex).toString();
+                            String newText = maneuverActions.get(navigationIndex);
                             editText.setText(newText);
                         }
 
                     }
                 });
-
+        //Next button
         final Button button2 = findViewById(R.id.buttonNext);
         button2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 navigationIndex++;
+                //Protects maneuverActions from going out of bounds
+                if(navigationIndex == maneuverActions.size()) {
+                    navigationIndex = 0;
+                }
                 TextView editText = findViewById(R.id.textViewDirections);
-                String newText = maneuverActions.get(navigationIndex).toString();
+                String newText = maneuverActions.get(navigationIndex);
                 editText.setText(newText);
             }
         });
+        //Previous button
         final Button button3 = findViewById(R.id.buttonPrevious);
         button3.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                navigationIndex--;
+                //Protects maneuverActions from going out of bounds
+                if(navigationIndex == 0) {
+                    navigationIndex = maneuverActions.size() - 1;
+                }
+                else {
+                    navigationIndex--;
+                }
                 TextView editText = findViewById(R.id.textViewDirections);
                 String newText = maneuverActions.get(navigationIndex).toString();
                 editText.setText(newText);
@@ -128,6 +135,7 @@ public class Directions extends Activity {
         });
 
     }
+    //Section to grab the instructions to get from startWaypoint to destinationWaypoint
     private void getRouting(Section section) {
         List<Maneuver> maneuverInstructions = section.getManeuvers();
         List<String> maneuvers = new ArrayList<String>();
@@ -141,6 +149,7 @@ public class Directions extends Activity {
         }
         maneuverActions = maneuvers;
     }
+    //Function to grab the coordinates in latitude/longitude from just the address
     private LatLng getLocationFromAddress(String strAddress) {
 
         Geocoder coder = new Geocoder(getApplicationContext());
@@ -164,6 +173,7 @@ public class Directions extends Activity {
 
         return p1;
     }
+    //Function to grab the current user's location using their GPS
     private static Location getLocationWithCheckNetworkAndGPS() {
         LocationManager lm = (LocationManager)
                 context.getSystemService(Context.LOCATION_SERVICE);

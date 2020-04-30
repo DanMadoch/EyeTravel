@@ -6,6 +6,9 @@
     android:paddingLeft="16dp"
     android:paddingRight="16dp">
 
+<!--
+    Page for inputting destination. User arrives here after tapping "Directions" button on main screen
+ -->
     <EditText
         android:id="@+id/editTextInput"
         android:layout_width="355dp"

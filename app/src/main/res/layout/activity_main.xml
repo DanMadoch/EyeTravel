@@ -4,6 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
+<!--
+    Main page layout with all buttons identified by their id, with text for EyeTravel at the top
+-->
     <Button
         android:id="@+id/buttonMagnifier"
         android:layout_width="192dp"
@@ -88,11 +92,4 @@
 
         android:textColor="#000000"
         android:textSize="50sp" />
-
-    <!--
-        <com.here.sdk.mapviewlite.MapViewLite
-            android:id="@+id/map_view"
-            android:layout_width="395dp"
-            android:layout_height="match_parent"/>
-    -->
 </RelativeLayout>

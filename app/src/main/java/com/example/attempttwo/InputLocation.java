@@ -15,14 +15,13 @@ public class InputLocation extends Activity {
 
         EditText textInput = findViewById(R.id.editTextInput);
 
-
+        //Submit button
         final Button button1 = findViewById(R.id.buttonSubmit);
         button1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 String destination = textInput.getText().toString();
                 Intent intent = new Intent(InputLocation.this, Directions.class);
                 intent.putExtra("address", destination);
-                //EditText editText = (EditText) findViewById(R.id.editText);
                 startActivity(intent);
 
             }
