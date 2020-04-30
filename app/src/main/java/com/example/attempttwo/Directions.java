@@ -135,7 +135,6 @@ public class Directions extends Activity {
             ManeuverAction maneuverAction = maneuverInstruction.getAction();
             GeoCoordinates maneuverLocation = maneuverInstruction.getCoordinates();
 
-            // Note to DTM, you prob want to use the maneuverAction enum to build out what you're printing to the app
             String maneuverInfo = maneuverInstruction.getText();
             maneuvers.add(maneuverInfo);
 
